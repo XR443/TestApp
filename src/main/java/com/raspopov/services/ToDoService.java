@@ -5,6 +5,7 @@ import com.raspopov.repositories.ToDoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ public class ToDoService {
     public ToDo create(ToDo toDo) {
         if (toDo.getId() != null)
             throw new IllegalArgumentException("Entity Id must be null");
+        toDo.setCreationDate(OffsetDateTime.now());
         return toDoRepository.save(toDo);
     }
 
